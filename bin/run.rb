@@ -1,6 +1,6 @@
 require_relative "../config/environment"
 
 class Run
-    BoredAPI.get_activity
+    activity = GetAcitivity.new.get_activity
     puts "#{activity[:details]} - #{activity[:type]}"
 end

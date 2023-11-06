@@ -17,5 +17,5 @@ class GetAcitivity
     end
 end
 
-activities = GetAcitivity.new.get_activity
-puts activities
+# activities = GetAcitivity.new.get_activity
+# puts activities
