@@ -2,7 +2,7 @@ require 'net/http'
 require 'open-uri'
 require 'json'
 
-class GetAcitivity
+class GetActivity
     URL = "https://www.boredapi.com/api/activity"
 
     def get_activity
