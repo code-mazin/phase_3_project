@@ -13,3 +13,4 @@ Bundler.require(:default, ENV["RACK_ENV"])
 
 require_relative "../lib/user"
 require_relative "../lib/api"
+require_relative "../lib/activity"
