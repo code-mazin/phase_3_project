@@ -5,7 +5,7 @@ class Run
     def initialize
         puts "Welcome to the Bored App!"
 
-        puts "Please enter your username to sign-in:"
+        puts "To sign-in, Please enter your username :"
         username = gets.chomp
 
 
@@ -42,7 +42,7 @@ class Run
     def menu
         puts "MENU:"
         puts "#{".explore"}\t- to get new activity"
-        puts "#{".list"}\t\t- to check saved activity list"
+        puts "#{".list"}\t\t- to check saved activities list"
         puts "#{".exit"}\t\t- to terminate the Bored App!"
 
         puts "Please enter your command:"
@@ -60,15 +60,15 @@ class Run
                 
                 activity = GetActivity.new.get_activity
                 
-                puts "#{activity[:details]} - type: #{activity[:type]}"
+                puts "#{activity[:details]} - type: #{activity[:desc]}"
                 
                 puts "Add to my list (yes/no)?"
                 
             input = gets.chomp
 
             if input.downcase == "yes"
-                user.plans.create(description: activity[:details], type: activity[:type])
-                puts "You have added #{activity[:details]}"
+                user.activities.create(details: activity[:details], info: activity[:desc])
+                puts "You have added #{activity[:details]} to the list."
             else
                 puts "Activity deleted."
             end
