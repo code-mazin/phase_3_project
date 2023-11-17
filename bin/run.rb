@@ -3,7 +3,7 @@ require_relative "../config/environment"
 class Run
     attr_accessor :user
     def initialize
-        puts "Welcome to the Bored App!"
+        puts "Welcome to the Bored App!".white.on_green.bold
 
         puts "To sign-in, Please enter your username :"
         username = gets.chomp
@@ -25,7 +25,7 @@ class Run
 
             if choice.downcase == ".exit"
                 is_active = false
-                puts "Thank you for using Bored App. Goodbye, #{user.name}!"
+                puts "Thank you for using Bored App. Goodbye, #{user.name}!".red.bold
             elsif choice.downcase == ".explore"
                 system("clear")
                 explore
@@ -34,16 +34,16 @@ class Run
                 list
             else
                 system("clear")
-                puts "Command not found!"
+                puts "Command not found!".red.bold
             end
         end
     end
 
     def menu
         puts "MENU:"
-        puts "#{".explore"}\t- to get new activity"
-        puts "#{".list"}\t\t- to check saved activities list"
-        puts "#{".exit"}\t\t- to terminate the Bored App!"
+        puts "#{".explore".on_green}\t- to get new activity"
+        puts "#{".list".on_green}\t\t- to check saved activities list"
+        puts "#{".exit".on_green}\t\t- to terminate the Bored App!"
 
         puts "Please enter your command:"
         gets.chomp
@@ -54,9 +54,9 @@ class Run
 
             while is_explore do 
                 
-                puts "Looking for a new activity..."
-                
-                puts "Just found a new activity:"
+                puts "Looking for a new activity...".green
+                sleep(2)
+                puts "Just found a new activity:".green
                 
                 activity = GetActivity.new.get_activity
                 
@@ -70,7 +70,7 @@ class Run
                 user.activities.create(details: activity[:details], info: activity[:desc])
                 puts "You have added #{activity[:details]} to the list."
             else
-                puts "Activity deleted."
+                puts "Activity deleted.".on_red
             end
 
             puts "Continue exploring (yes/no)?"
@@ -82,6 +82,17 @@ class Run
                 system("clear")
             end
         end
+    end
+
+    def list
+        puts "activities selected by the user".on_green
+        user.activities.each_with_index do |activity, i|
+            puts "#{i+1}. #{activity.details}"
+        end
+
+        puts "\n\nPress enter to go back to the main menu"
+        go_back = gets.chomp
+        system("clear")
     end
 end
         
