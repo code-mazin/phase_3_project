@@ -12,7 +12,7 @@ class GetActivity
         json = JSON.parse(response.body)
         activity = {
             :details => json["activity"],
-            :desc => json["type"]
+            :type => json["type"]
         }
     end
 end

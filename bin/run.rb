@@ -11,10 +11,10 @@ class Run
 
         if User.find_by_name(username)
             @user = User.find_by_name(username)
-            puts "Welcome back, #{user.name}!"
+            puts "Welcome back, #{user.name.capitalize()}!"
         else
             @user = User.create(name: username)
-            puts "#{user.name} account successfully created!"
+            puts "#{user.name.capitalize()} account successfully created!"
         end
 
         is_active = true
@@ -60,14 +60,14 @@ class Run
                 
                 activity = GetActivity.new.get_activity
                 
-                puts "#{activity[:details]} - type: #{activity[:desc]}"
+                puts "#{activity[:details]} - type: #{activity[:type]}"
                 
                 puts "Add to my list (yes/no)?"
                 
             input = gets.chomp
 
             if input.downcase == "yes"
-                user.activities.create(details: activity[:details], info: activity[:desc])
+                user.activities.create(details: activity[:details], type: activity[:type])
                 puts "You have added #{activity[:details]} to the list."
             else
                 puts "Activity deleted.".on_red
@@ -87,7 +87,7 @@ class Run
     def list
         puts "activities selected by the user".on_green
         user.activities.each_with_index do |activity, i|
-            puts "#{i+1}. #{activity.details}"
+            puts "#{i+1}. #{activity.details} - type: #{activity[:type]}"
         end
 
         puts "\n\nPress enter to go back to the main menu"

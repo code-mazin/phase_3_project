@@ -13,7 +13,7 @@
 ActiveRecord::Schema[7.1].define(version: 2023_11_15_041025) do
   create_table "activities", force: :cascade do |t|
     t.string "details"
-    t.string "info"
+    t.string "type"
     t.integer "user_id"
   end
 
